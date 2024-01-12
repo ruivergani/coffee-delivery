@@ -9,9 +9,7 @@ export function Header(){
       <div className="container">
         <img src={logoImage} alt="" title=""/>
         <nav>
-          <navLink to="/" title="">
-            
-          </navLink>
+          
         
         </nav>
       </div>

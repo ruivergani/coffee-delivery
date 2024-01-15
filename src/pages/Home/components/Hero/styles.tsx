@@ -41,5 +41,3 @@ export const SectionHeroText = styled.div`
     }
   }
 `;
-
-// Image Hero

@@ -70,21 +70,21 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: bold;
   }
   h1{
-    font-size: 48px;
+    font-size: 4.8rem;
   }
   h2{
-    font-size: 32px;
+    font-size: 3.2rem;
   }
   h3{
-    font-size: 24px;
+    font-size: 2.4rem;
   }
   h4{
-    font-size: 20px;
+    font-size: 2rem;
   }
   h5{
-    font-size: 18px; 
+    font-size: 1.8rem; 
   }
   p{
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 `;

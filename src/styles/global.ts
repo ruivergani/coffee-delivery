@@ -42,6 +42,28 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    line-height: 130%; /* 18.2px */
+  }
+  // Container
+  .container{
+    width: 100%;
+    max-width: 127.6rem;
+    margin: 0 auto;
+    padding: 0;
+  }
+  @media (max-width: 1400px){
+    .container{
+      padding: 0px 2.5rem;
+    }
+  }
+  @media (max-width: 300px){
+    .container{
+      padding: 0px 1.5rem;
+    }
+  }
+  // Typography
+  h1{
+
   }
 
 `;

@@ -5,7 +5,12 @@ export const ContentContainer = styled.section`
   padding-bottom: 157px;
   .container{
     display: flex;
-    gap: 40px;
+    gap: 54px;
+    flex-direction: column;
   }
-
+`;
+export const AllCoffee = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 32px 40px;
 `;

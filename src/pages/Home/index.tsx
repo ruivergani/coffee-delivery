@@ -1,7 +1,9 @@
+import { Card } from "../../components/Card";
 import { Hero } from "./components/Hero";
-import { ContentContainer } from "./styles";
+import { AllCoffee, ContentContainer } from "./styles";
 
 export function Home(){
+
   return (
     <>
       <Hero/>
@@ -9,9 +11,9 @@ export function Home(){
       <ContentContainer>
         <div className="container">
           <h2>Our Coffee</h2>
-          <div className="content__all">
-            
-          </div>
+          <AllCoffee>
+            <Card/>
+          </AllCoffee>
         </div>
       </ContentContainer>
     </>

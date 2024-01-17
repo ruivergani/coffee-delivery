@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { mixins } from '../../styles/mixins';
 
 export const CardCoffee = styled.div`
   border-radius: 6px 36px;
@@ -68,6 +70,10 @@ export const CardCoffeeFooter = styled.div`
     }
   }
   .cardfooter__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     button{
       padding: 8px;
       display: flex;
@@ -83,3 +89,20 @@ export const CardCoffeeFooter = styled.div`
     }
   }
 `;
+// export const Order = styled.div<{ $itemAdded?: boolean }>`
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+//   > button {
+//     background-color: ${({ theme, $itemAdded }) =>
+//       $itemAdded ? theme.colors['yellow-dark'] : theme.colors['purple-dark']};
+//     transition: background-color 0.2s;
+//     border-radius: 6px;
+//     padding: 8px;
+//     display: flex;
+//     &:hover {
+//       background-color: ${({ theme, $itemAdded }) =>
+//         $itemAdded ? theme.colors.yellow : theme.colors.purple};
+//     }
+//   }
+// `

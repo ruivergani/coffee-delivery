@@ -23,6 +23,7 @@ export function Header(){
           </NavLink>
           <NavLink to="/cart" title="cart">
             <ShoppingCart size={22}/>
+            <span>3</span>
           </NavLink>
         </HeaderNav>
       </div>

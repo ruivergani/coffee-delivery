@@ -9,10 +9,15 @@ export const QuantityInputContainer = styled.div`
   border-radius: 6px;
   button{
     background-color: transparent !important;
-    color: ${(props) => props.theme['purple-dark']} !important;
+    color: ${(props) => props.theme['purple']} !important;
+    display: flex;
+    align-items: center;
+    transition: all .2s;
+    &:hover{
+      color: ${(props) => props.theme['purple-dark']};
+    }
   }
   :focus{
     box-shadow: none !important;
   }
-
 `;

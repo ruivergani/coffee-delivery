@@ -1,7 +1,8 @@
-import { ShoppingCart } from 'phosphor-react';
-import { CardCoffee, CardCoffeeFooter } from './styles';
+import { Check, ShoppingCart } from 'phosphor-react';
+import { CardCoffee, CardCoffeeFooter, OrderButton } from './styles';
 import { QuantityInput } from '../Form/QuantityInput';
 import { useEffect, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 type Props = {
   coffee: {
@@ -14,6 +15,7 @@ type Props = {
   }
 }
 export function Card({coffee} : Props){
+  const theme = useTheme();
   // States
   const [quantity, setQuantity] = useState(1);
   const [isItemAdded, setIsItemAdded] = useState(false)
@@ -68,16 +70,18 @@ export function Card({coffee} : Props){
         <div className="cardfooter__price">
           <p><span>£ </span>{coffee.price.toFixed(2)}</p>
         </div>
-        <div className="cardfooter__buttons">
+        <OrderButton $itemAdded={isItemAdded}>
           <QuantityInput 
             quantity={quantity} 
             incrementQuantity={incrementQuantity}
             decrementQuantity={decrementQuantity}
           />
-          <button type='button' onClick={handleAddItem}>
-            <ShoppingCart size={22}/>
+          <button type='button' onClick={handleAddItem} disabled={isItemAdded}>
+            {
+              isItemAdded ? <Check size={22} color={theme['base-card']} /> : <ShoppingCart size={22} color={theme['base-card']}/>
+            }
           </button>
-        </div>
+        </OrderButton>
       </CardCoffeeFooter>
     </CardCoffee>
   )

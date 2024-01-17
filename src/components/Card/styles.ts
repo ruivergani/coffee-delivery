@@ -1,3 +1,4 @@
+import { defaultTheme } from './../../styles/themes/default';
 import styled from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { mixins } from '../../styles/mixins';
@@ -57,7 +58,7 @@ export const CardCoffeeFooter = styled.div`
     width: 100%;
     max-width: 70px;
     p{
-      color: var(--Base-Text, #574F4D);
+      color: ${(props) => props.theme['base-text']};
       font-family: 'Roboto', sans-serif;
       font-size: 20px;
       font-weight: bold;
@@ -69,40 +70,32 @@ export const CardCoffeeFooter = styled.div`
       }
     }
   }
-  .cardfooter__buttons{
+`;
+// Define a styled component named OrderButton with an optional prop $itemAdded
+export const OrderButton = styled.div<{ $itemAdded?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  button{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    button{
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      color: ${(props) => props.theme.white};
-      background: ${(props) => props.theme['purple-dark']};
-      transition: all .3s;
-      &:hover{
-        filter: brightness(0.9);
-      }
+    justify-content: center;
+    border-radius: 6px;
+    padding: 8px;
+    transition: all .3s;
+    color: ${(props) => props.theme.white};
+    background-color: ${
+      // If $itemAdded is true, use the 'yellow-dark' color from the theme, otherwise use 'purple-dark'
+      ({$itemAdded}) => 
+      $itemAdded ? defaultTheme['yellow-dark'] : defaultTheme['purple-dark']
+    };
+    &:hover{
+      background-color: ${
+        // If $itemAdded is true, use the 'yellow' color from the theme, otherwise use 'purple'
+        ({$itemAdded}) => 
+        $itemAdded ? defaultTheme.yellow : defaultTheme.purple
+      };
     }
   }
 `;
-// export const Order = styled.div<{ $itemAdded?: boolean }>`
-//   display: flex;
-//   align-items: center;
-//   gap: 8px;
-//   > button {
-//     background-color: ${({ theme, $itemAdded }) =>
-//       $itemAdded ? theme.colors['yellow-dark'] : theme.colors['purple-dark']};
-//     transition: background-color 0.2s;
-//     border-radius: 6px;
-//     padding: 8px;
-//     display: flex;
-//     &:hover {
-//       background-color: ${({ theme, $itemAdded }) =>
-//         $itemAdded ? theme.colors.yellow : theme.colors.purple};
-//     }
-//   }
-// `

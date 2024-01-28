@@ -39,8 +39,11 @@ export const HeaderNav = styled.nav`
       align-items: center;
       justify-content: center;
 
-      font-size: 12px;
-      font-weight: bold;
+      p{
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 100%;
+      }
 
       position: absolute;
       top: -10px;

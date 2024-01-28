@@ -1,5 +1,9 @@
+import { RadioButtonGroup } from "./components/RadioButtonGroup";
+
 export function Cart(){
   return (
-    <h1>Cart</h1>
+    <>
+      <RadioButtonGroup/>
+    </>
   )
 }

@@ -21,7 +21,7 @@ ___
 
 ## 💻 About
 
-This is a challenging project where you will have the opportunity to develop a timer Pomodoro application using React and TypeScript.
+This is a challenging project where you will have the opportunity to develop a Coffee Delivery App using React and TypeScript.
 
 ___
 
@@ -61,9 +61,12 @@ ___
 
 ## Functionalities
 
-- Add a new Pomodoro task to the list.
-- Check the history of tasks done.
-- Start timer or Pause Timer.
+- List of products (coffees) available for purchase
+- Add a specific number of items to the cart
+- Increase or remove the number of items in the cart
+- Form for the user to fill in their address
+- Display the total items in the cart in the Header
+- Display the total value of the sum of items in the cart multiplied by the value
   
 ___
 
@@ -72,7 +75,7 @@ ___
 Clone the project to the desired location on your computer.
 
 ```bash
-$ git clone git@github.com:ruivergani/ignite-timer.git
+$ git clone git@github.com:ruivergani/coffee-delivery.git
 ```
 ___
 
@@ -80,7 +83,7 @@ ___
 ```bash
 
 # Navigate to the directory
-$ cd ignite-timer
+$ cd coffee-delivery
 
 # Install the necessary dependencies
 $ yarn

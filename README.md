@@ -29,7 +29,8 @@ ___
 The page in desktop format is seen in the image below:
 \
 \
-<img width="1507" alt="Screenshot 2023-11-19 at 20 19 08" src="https://github.com/ruivergani/ignite-timer/assets/70537459/4059004d-78e3-4012-b1e4-575646c26797">
+![Screenshot 2024-02-04 at 19 33 53](https://github.com/ruivergani/coffee-delivery/assets/70537459/b7b61912-6959-42e8-b7e3-4bd2ec92a5a0)
+
 
 ___
 
@@ -54,8 +55,6 @@ The following technologies were employed in the creation of this project:
 - [Styled Components](https://styled-components.com/)
 - [Phosphor React](https://phosphoricons.com/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [editorConfig][vceditconfig] and [esLint][vceslint]
-- [Figma](https://www.figma.com/file/QngNpEvtTk7XN61PObI3Ro/Ignite-Feed?type=design&node-id=26%3A12&mode=design&t=GL7dPs6g1RYCtsB6-1) detailed Figma file for the project;
-
 
 ___
 

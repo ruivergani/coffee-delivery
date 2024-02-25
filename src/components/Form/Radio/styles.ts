@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RadioInputContainer = styled.div<{disabled?: boolean, isSelected?: boolean}>`
+export const RadioInputContainer = styled.div`
   border-radius: 6px;
   background-color: ${(props) => props.theme['base-button']};
   display: inline-block;
@@ -12,11 +12,10 @@ export const RadioInputContainer = styled.div<{disabled?: boolean, isSelected?: 
   &:hover{
     background-color: ${(props) => props.theme['base-hover']};
   }
-  // isSelected
-  ${({isSelected}) => isSelected && `
+  &[data-state='true'] {
     background-color: ${(props) => props.theme['purple-light']};
     border: 1px solid #8047F8;
-  `}
+  }
 `;
 
 export const StyledInput = styled.input<{disabled?: boolean, isSelected?: boolean}>`
@@ -29,7 +28,7 @@ export const StyledInput = styled.input<{disabled?: boolean, isSelected?: boolea
   height: 0;
 `;
 
-export const StyledLabel = styled.label<{disabled?: boolean, isSelected?: boolean}>`
+export const StyledLabel = styled.label<{ disabled?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,8 +38,9 @@ export const StyledLabel = styled.label<{disabled?: boolean, isSelected?: boolea
   color: ${(props) => props.theme['base-text']};
   font-size: 12px;
   font-weight: 500;
-  line-height: 100%; 
+  line-height: 100%;
   text-transform: uppercase;
+  //cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   cursor: pointer;
   svg{
     width: 16px;
@@ -48,9 +48,9 @@ export const StyledLabel = styled.label<{disabled?: boolean, isSelected?: boolea
     color: ${(props) => props.theme['purple-dark']} !important;
   }
   // disabled
-  ${
-    ({disabled}) =>
-    disabled && `
+  ${({ disabled }) =>
+    disabled &&
+    `
       cursor: not-allowed;
     `
   }

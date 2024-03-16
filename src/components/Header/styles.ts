@@ -4,6 +4,8 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.header`
   padding: 32px 0px;
   background-color: ${(props) => props.theme['background-default']};
+  position: sticky;
+  top: 0;
   .container{
     display: flex;
     align-items: center;
@@ -23,7 +25,7 @@ export const HeaderNav = styled.nav`
     align-items: center;
     gap: 4px;
     border-radius: 6px;
-    border: 1px solid transparent; 
+    border: 1px solid transparent;
     transition: all .3s;
   }
   a{

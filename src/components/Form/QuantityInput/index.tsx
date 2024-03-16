@@ -11,11 +11,11 @@ export function QuantityInput({quantity, incrementQuantity, decrementQuantity} :
   return (
     <QuantityInputContainer>
       <button onClick={decrementQuantity}>
-        <Minus size={14} />
+        <Minus size={14} weight="bold" />
       </button>
       <span>{quantity}</span>
       <button onClick={incrementQuantity}>
-        <Plus size={14} /> 
+        <Plus size={14} weight="bold" />
       </button>
     </QuantityInputContainer>
   )

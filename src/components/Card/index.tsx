@@ -4,17 +4,18 @@ import { QuantityInput } from '../Form/QuantityInput';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 
-type Props = {
-  coffee: {
-    id: string,
-    name: string,
-    description: string,
-    price: number,
-    image: string,
-    tags: Array<string>
-  }
+export interface Coffee {
+  id: string,
+  name: string,
+  description: string,
+  price: number,
+  image: string,
+  tags: Array<string>
 }
-export function Card({coffee} : Props){
+type CoffeeProps = {
+  coffee: Coffee;
+}
+export function Card({coffee} : CoffeeProps){
   const theme = useTheme();
   // States
   const [quantity, setQuantity] = useState(1);
@@ -37,7 +38,7 @@ export function Card({coffee} : Props){
   //     }
   //   }
   // }, [isItemAdded])
-  
+
   // Functions
   function incrementQuantity() {
     setQuantity((state) => state + 1) // Closures Concept
@@ -56,7 +57,7 @@ export function Card({coffee} : Props){
     <CardCoffee>
       <img src={coffee.image} alt={coffee.name} className='cardCoffeeImage'/>
       <div className="tags">
-        { // Array<string> 
+        { // Array<string>
           coffee.tags.map((item) => {
             return (
               <span key={item}>{item}</span>
@@ -71,8 +72,8 @@ export function Card({coffee} : Props){
           <p><span>£ </span>{coffee.price.toFixed(2)}</p>
         </div>
         <OrderButton $itemAdded={isItemAdded}>
-          <QuantityInput 
-            quantity={quantity} 
+          <QuantityInput
+            quantity={quantity}
             incrementQuantity={incrementQuantity}
             decrementQuantity={decrementQuantity}
           />

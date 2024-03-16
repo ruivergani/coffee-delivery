@@ -9,6 +9,7 @@ export interface CartItem extends Coffee{
 }
 export interface CartContextType {
   cartItems: CartItem[];
+  cartQuantity: number;
   addCoffeeToCart: (Coffee: CartItem) => void;
 }
 export interface CartContextProviderProps {
@@ -22,6 +23,7 @@ export const CartContext = createContext({} as CartContextType);
 export function CartContextProvider({ children } : CartContextProviderProps) {
   // CartItems
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const cartQuantity = cartItems.length;
 
   // Add Items to CartContext
   function addCoffeeToCart(coffee: CartItem) {
@@ -40,8 +42,10 @@ export function CartContextProvider({ children } : CartContextProviderProps) {
     // This function is responsible for adding items to the shopping cart context (cartItems), either by adding a new item if it doesn't exist or updating the quantity if the item already exists in the cart. It ensures immutability by using a function like produce and then updates the state accordingly using setCartItems.
   }
 
+  console.log(cartItems);
+
   return (
-    <CartContext.Provider value={{cartItems, addCoffeeToCart}}>
+    <CartContext.Provider value={{cartItems, addCoffeeToCart, cartQuantity}}>
       {children}
     </CartContext.Provider>
   )

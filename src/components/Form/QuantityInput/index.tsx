@@ -2,9 +2,9 @@ import { Minus, Plus } from "phosphor-react";
 import { QuantityInputContainer } from "./styles";
 
 export type Props = {
-  quantity: number
-  incrementQuantity: () => void // function that returns void
-  decrementQuantity: () => void
+  quantity: number;
+  incrementQuantity: () => void; // function that returns void
+  decrementQuantity: () => void;
 }
 
 export function QuantityInput({quantity, incrementQuantity, decrementQuantity} : Props){

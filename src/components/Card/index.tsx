@@ -1,9 +1,11 @@
 import { Check, ShoppingCart } from 'phosphor-react';
 import { CardCoffee, CardCoffeeFooter, OrderButton } from './styles';
 import { QuantityInput } from '../Form/QuantityInput';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTheme } from 'styled-components';
+import { useCart } from '../../hooks/useCart';
 
+// Interface TypeScript
 export interface Coffee {
   id: string,
   name: string,
@@ -15,43 +17,30 @@ export interface Coffee {
 type CoffeeProps = {
   coffee: Coffee;
 }
-export function Card({coffee} : CoffeeProps){
+export function Card({ coffee }: CoffeeProps) {
+  // Theme Hook
   const theme = useTheme();
   // States
   const [quantity, setQuantity] = useState(1);
-  const [isItemAdded, setIsItemAdded] = useState(false)
-
-  useEffect(() => {
-
-  }, [isItemAdded])
-
-  // useEffect(() => {
-  //   let timeout: number
-  //   if (isItemAdded) {
-  //     timeout = setTimeout(() => {
-  //       setIsItemAdded(false)
-  //     }, 1000)
-  //   }
-  //   return () => {
-  //     if (timeout) {
-  //       clearTimeout(timeout)
-  //     }
-  //   }
-  // }, [isItemAdded])
-
+  const [isItemAdded, setIsItemAdded] = useState(false);
+  // Function (Context)
+  const { addCoffeeToCart } = useCart();
   // Functions
-  function incrementQuantity() {
-    setQuantity((state) => state + 1) // Closures Concept
+  function handleIncrementQuantity() {
+    setQuantity((state) => state + 1) // Closures Concept (valor antigo + atual)
   }
-  function decrementQuantity() {
+  function handleDecrementQuantity() {
     if (quantity > 1) {
       setQuantity((state) => state - 1) // Closures Concept
     }
   }
-  function handleAddItem() {
-    //addItem({ id: coffee.id, quantity })
+  function handleAddToCart() {
+    const coffeeToAdd = { // spread properties of coffee + quantity (value is taken from the state)
+      ...coffee,
+      quantity,
+    };
+    addCoffeeToCart(coffeeToAdd) // add to the function from the context 
     setIsItemAdded(true)
-    setQuantity(1)
   }
   return(
     <CardCoffee>
@@ -74,10 +63,10 @@ export function Card({coffee} : CoffeeProps){
         <OrderButton $itemAdded={isItemAdded}>
           <QuantityInput
             quantity={quantity}
-            incrementQuantity={incrementQuantity}
-            decrementQuantity={decrementQuantity}
+            incrementQuantity={handleIncrementQuantity}
+            decrementQuantity={handleDecrementQuantity}
           />
-          <button type='button' onClick={handleAddItem} disabled={isItemAdded}>
+          <button type='button' onClick={handleAddToCart} disabled={isItemAdded}>
             {
               isItemAdded ? <Check size={22} color={theme['base-card']} /> : <ShoppingCart size={22} color={theme['base-card']}/>
             }

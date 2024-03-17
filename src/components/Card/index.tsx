@@ -7,7 +7,7 @@ import { useCart } from '../../hooks/useCart';
 
 // Interface TypeScript
 export interface Coffee {
-  id: string,
+  id: number,
   name: string,
   description: string,
   price: number,
@@ -39,7 +39,7 @@ export function Card({ coffee }: CoffeeProps) {
       ...coffee,
       quantity,
     };
-    addCoffeeToCart(coffeeToAdd) // add to the function from the context 
+    addCoffeeToCart(coffeeToAdd) // add to the function from the context
     setIsItemAdded(true)
   }
   return(

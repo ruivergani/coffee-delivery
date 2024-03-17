@@ -5,15 +5,17 @@ import { CartContainer, InfoContainer, BasketContainer, PaymentContainer, Paymen
 import { Bank, CreditCard, CurrencyGbp, MapPinLine, Money, Trash } from "phosphor-react";
 import { zodResolver } from "@hookform/resolvers/zod"; // integrate with ZOD
 import { QuantityInput } from "../../components/Form/QuantityInput";
-import CoffeeImage from "../../assets/images/Type=Americano.svg";
-import { useState } from "react";
+import { useCart } from "../../hooks/useCart";
+import { CartItem } from "../../contexts/CartProvider";
 
 export function Cart() {
+  // Theme
   const theme = useTheme();
-  //const selectedPaymentMethod = watch('paymentMethod');
-
+  // CartItems
+  const { cartItems } = useCart();
+  // Variables
   // States
-  const [quantity, setQuantity] = useState(1);
+
   function handleIncrementQuantity() {
 
   }
@@ -21,7 +23,14 @@ export function Cart() {
 
   }
 
-  // Need to re-do all the work in the Cart, due to validations and also needs to be inside a form.
+  // Calculate Prices
+  function calculateItemPrice(item : CartItem) {
+    return item.price * item.quantity;
+  }
+  const totalItemsPrice = cartItems.reduce((previousValue, currentItem) => {
+    return (previousValue += currentItem.price * currentItem.quantity)
+  }, 0); // The reduce function iterates over each item in the array and accumulates a single value, in this case, the total price.
+
   return (
     <div className="container">
       <CartContainer>
@@ -131,34 +140,38 @@ export function Cart() {
           <h2>Coffee Selected</h2>
           <BasketInfo>
             <CoffeeBasket>
-
-              {/* Map Coffee Items */}
-              <CoffeeItem>
-                <img src={CoffeeImage} alt="" />
-                <div className="content">
-                  <div className="info">
-                    <p>Expresso Traditional</p>
-                    <div className="buttons">
-                      <QuantityInput
-                        quantity={quantity}
-                        incrementQuantity={handleIncrementQuantity}
-                        decrementQuantity={handleDecrementQuantity}
-                      />
-                      <RemoveButton>
-                        <Trash size={16} color={theme['purple']} weight="bold"/>
-                        Remove
-                      </RemoveButton>
-                    </div>
-                  </div>
-                  <aside>R$ 19,80</aside>
-                </div>
-              </CoffeeItem>
-
+              {
+                /* Map Coffee Items */
+                cartItems.map((item) => {
+                  return (
+                    <CoffeeItem key={item.id} >
+                      <img src={item.image} alt="" />
+                      <div className="content">
+                        <div className="info">
+                          <p>{item.name}</p>
+                          <div className="buttons">
+                            <QuantityInput
+                              quantity={item.quantity}
+                              incrementQuantity={handleIncrementQuantity}
+                              decrementQuantity={handleDecrementQuantity}
+                            />
+                            <RemoveButton>
+                              <Trash size={16} color={theme['purple']} weight="bold"/>
+                              Remove
+                            </RemoveButton>
+                          </div>
+                        </div>
+                        <aside>£ {calculateItemPrice(item).toFixed(2)}</aside>
+                      </div>
+                    </CoffeeItem>
+                  )
+                })
+              }
             </CoffeeBasket>
             <BasketTotalInfo>
-              <p>Total of items: <span>R$ 29,70</span></p>
-              <p>Delivery: <span>R$ 3,50</span></p>
-              <p className="total">Total: <span>R$ 33,20</span></p>
+              <p>Total of items: <span>£ {totalItemsPrice.toFixed(2)}</span></p>
+              <p>Delivery: <span>£ 3,50</span></p>
+              <p className="total">Total: <span>£ 33,20</span></p>
               <CheckoutButton type="submit" form="order">
                 Confirm Order
               </CheckoutButton>

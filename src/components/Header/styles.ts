@@ -56,6 +56,7 @@ export const HeaderNav = styled.nav`
     background-color: ${(props) => props.theme['purple-light']};
     color: ${(props) => props.theme['purple-dark']};
     position: relative;
+    cursor: default !important;
     &:hover{
       filter: brightness(0.9);
     }
@@ -66,5 +67,9 @@ export const HeaderNav = styled.nav`
     &:hover{
       filter: brightness(0.9);
     }
+  }
+  .disabled{
+    cursor: not-allowed !important;
+    pointer-events: none;
   }
 `;

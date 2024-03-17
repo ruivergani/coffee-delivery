@@ -11,6 +11,7 @@ export interface CartContextType {
   cartItems: CartItem[];
   cartQuantity: number;
   addCoffeeToCart: (Coffee: CartItem) => void;
+  changeCartItemQuantity: (cartItemId: number, type: "increase" | "decrease") => void;
 }
 export interface CartContextProviderProps {
   children: ReactNode; // This allows any component wrapped in CartContextProvider to be able to access the provided context.
@@ -41,11 +42,24 @@ export function CartContextProvider({ children } : CartContextProviderProps) {
 
     // This function is responsible for adding items to the shopping cart context (cartItems), either by adding a new item if it doesn't exist or updating the quantity if the item already exists in the cart. It ensures immutability by using a function like produce and then updates the state accordingly using setCartItems.
   }
+  // Function Change Cart Quantity
+  function changeCartItemQuantity(cartItemId: number,type: 'increase' | 'decrease') {
+    const newCart = produce(cartItems, (draft) => {
+      // Search if coffee exists in cart
+      const coffeeExistsInCart = cartItems.findIndex((item) => item.id === cartItemId);
+      // If exists
+      if (coffeeExistsInCart >= 0) {
+        const item = draft[coffeeExistsInCart]; // actual item
+        draft[coffeeExistsInCart].quantity = type === 'increase' ? item.quantity + 1 : item.quantity - 1;
+      }
+      setCartItems(newCart);
+    })
+  }
 
   console.log(cartItems);
 
   return (
-    <CartContext.Provider value={{cartItems, addCoffeeToCart, cartQuantity}}>
+    <CartContext.Provider value={{cartItems, addCoffeeToCart, cartQuantity, changeCartItemQuantity}}>
       {children}
     </CartContext.Provider>
   )

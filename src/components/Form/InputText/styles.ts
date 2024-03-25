@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { css } from 'styled-components';
 
 // Box Component
 export const Box = styled.div`
@@ -6,8 +7,11 @@ export const Box = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
+interface InputStyleProps{
+  haserror: boolean;
+}
 // Input Component
-export const InputWrapper = styled.label`
+export const InputWrapper = styled.label<InputStyleProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,6 +28,10 @@ export const InputWrapper = styled.label`
     line-height: 130%;
     margin-right: 10px;
   }
+  /* Error Border (if hasError the css will be applied) */
+  ${(props) => props.haserror && css`
+    border-color: red !important;
+  `}
   // States
   &[data-state='focused']{
     border-color: ${(props) => props.theme['yellow-dark']};

@@ -32,7 +32,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
   }
   return (
     <Box {...containerProps}>
-      <InputWrapper data-state={isFocused ? 'focused' : 'blurred'}>
+      <InputWrapper data-state={isFocused ? 'focused' : 'blurred'} haserror={!!error}>
         <input
           type="text"
           onFocus={handleFocus}

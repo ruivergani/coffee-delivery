@@ -29,7 +29,7 @@ const orderFormValidationSchema = zod.object({
   neighborhood: zod.string().min(1, 'Inform the neighborhood'),
   city: zod.string().min(1, 'Inform the city'),
   state: zod.string().min(1, 'Inform the 2 letters council'),
-  paymentMethod: zod.enum(['credit', 'debit', 'cash'], {
+  paymentMethod: zod.enum(['credit', 'debit', 'cash'], { // enum: possible values
     invalid_type_error: 'Select payment method.',
   }),
 })
@@ -73,6 +73,7 @@ export function Cart() {
     }
     console.log(data);
   }
+  console.log(errors); // display errors
 
   return (
     <div className="container">
@@ -91,7 +92,7 @@ export function Cart() {
                   </div>
                 </AddressContainerTitle>
                 <AddressFormInfo>
-                  <InputText
+                <InputText
                     placeholder={"Postcode"}
                     containerProps={{ style: { gridArea: 'cep' } }}
                     error={errors.cep}

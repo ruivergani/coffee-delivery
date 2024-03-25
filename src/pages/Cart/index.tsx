@@ -9,6 +9,7 @@ import { useCart } from "../../hooks/useCart";
 import { CartItem } from "../../contexts/CartProvider";
 import { InputText } from "../../components/Form/InputText";
 import { RadioInput } from "../../components/Form/Radio";
+import { useNavigate } from "react-router-dom";
 
 type FormInputs = {
   cep: string
@@ -65,15 +66,24 @@ export function Cart() {
     resolver: zodResolver(orderFormValidationSchema),
   })
 
+  // Watch the payment method changes
   const selectedPaymentMethod = watch('paymentMethod')
+
+  // Navigate to another route (React Router DOM)
+  const navigate = useNavigate();
+  const {cleanCart} = useCart();
 
   const handleOrderCheckout: SubmitHandler<FormInputs> = (data) => {
     if (cartItems.length === 0) {
       return alert('You need at least one item in the cart.')
     }
     console.log(data);
+    navigate("/success", {
+      state: data, // send state (which in this case is data)
+    });
+    cleanCart(); // clean the cart
   }
-  console.log(errors); // display errors
+  //console.log(errors); // display errors
 
   return (
     <div className="container">

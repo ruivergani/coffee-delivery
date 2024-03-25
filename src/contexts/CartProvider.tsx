@@ -12,7 +12,8 @@ export interface CartContextType {
   cartQuantity: number;
   addCoffeeToCart: (Coffee: CartItem) => void;
   changeCartItemQuantity: (cartItemId: number, type: "increase" | "decrease") => void;
-  removeItemCart: (cartItemId: number)  => void;
+  removeItemCart: (cartItemId: number) => void;
+  cleanCart: () => void;
 }
 export interface CartContextProviderProps {
   children: ReactNode; // This allows any component wrapped in CartContextProvider to be able to access the provided context.
@@ -34,7 +35,7 @@ export function CartContextProvider({ children } : CartContextProviderProps) {
     }
     return [];
   });
-  
+
   const cartQuantity = cartItems.length;
 
   // Add Items to CartContext
@@ -77,6 +78,10 @@ export function CartContextProvider({ children } : CartContextProviderProps) {
     setCartItems(newCart);
   }
 
+  function cleanCart() {
+    setCartItems([]);
+  }
+
   // useEffect => sempre que [cartItems] mudar => salva no localStorage o array
   useEffect(() => {
     if (cartItems) { // avoid null or undefined
@@ -89,7 +94,7 @@ export function CartContextProvider({ children } : CartContextProviderProps) {
   console.log(cartItems);
 
   return (
-    <CartContext.Provider value={{cartItems, addCoffeeToCart, cartQuantity, changeCartItemQuantity, removeItemCart}}>
+    <CartContext.Provider value={{cartItems, addCoffeeToCart, cartQuantity, changeCartItemQuantity, removeItemCart, cleanCart}}>
       {children}
     </CartContext.Provider>
   )

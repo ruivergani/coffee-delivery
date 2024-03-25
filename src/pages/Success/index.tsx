@@ -3,8 +3,34 @@ import iconLocation from '../../assets/images/icon_location.svg';
 import iconMoney from '../../assets/images/icon_money.svg';
 import iconTimer from '../../assets/images/icon_timer.svg';
 import { SectionSuccess, SectionSuccessImage, SectionSuccessText } from './styles';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { OrderDataForm } from '../Cart';
+import { useEffect } from 'react';
 
-export function Success(){
+interface LocationType {
+  state: OrderDataForm;
+}
+
+export function Success() {
+
+  const { state } = useLocation() as unknown as LocationType; // now use the data here
+  const navigate = useNavigate();
+
+  // Criar useEffect para evitar entrar sem state (porque senao a pagina quebra)
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, [state, navigate]);
+
+  if (!state) return <></>; // return HTML empty so does not break website
+
+  // Capitalize Letter
+  function Capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  const CapitalPaymentMethod = Capitalize(state.paymentMethod);
+
   return (
     <SectionSuccess>
       <div className="container">
@@ -14,7 +40,7 @@ export function Success(){
           <ul>
             <li>
               <img src={iconLocation} alt="" />
-              <p>Delivery to Rua João Daniel Martinelli, 102 Farrapos - Porto Alegre, RS</p>
+              <p>Delivery to {state.street}, {state.number} {state.neighborhood} - {state.city}, {state.neighborhood}</p>
             </li>
             <li>
               <img src={iconTimer} alt="" />
@@ -22,7 +48,13 @@ export function Success(){
             </li>
             <li>
               <img src={iconMoney} alt="" />
-              <p>Payment on delivery Credit card</p>
+              <p>Payment on delivery&nbsp;
+                {CapitalPaymentMethod === 'Credit' || CapitalPaymentMethod === 'Debit' ? (
+                  <span>{CapitalPaymentMethod} card.</span>
+                ) : (
+                  <span>{CapitalPaymentMethod}.</span>
+                )}
+              </p>
             </li>
           </ul>
         </SectionSuccessText>

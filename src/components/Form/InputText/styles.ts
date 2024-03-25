@@ -37,6 +37,7 @@ export const InputWrapper = styled.label`
     padding: 12px;
     border: none;
     border-radius: 6px;
+    font-size: 14px;
     &:focus{
       outline: none;
       box-shadow: none;

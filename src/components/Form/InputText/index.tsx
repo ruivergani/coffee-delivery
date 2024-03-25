@@ -9,12 +9,13 @@ export interface InputTextProps extends InputHTMLAttributes<HTMLInputElement>{
   containerProps?: InputHTMLAttributes<HTMLDivElement>;
 }
 // Component
-export const InputText = forwardRef(function InputText(
+export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
+  function InputText(
   { optional, error, containerProps, onFocus, onBlur, ...rest }: InputTextProps,
   ref: LegacyRef<HTMLInputElement>,
 ) {
   // forwardRef = function is used to pass a ref through to a component. The `forwardRef` function is used to allow a parent component to send a ref to its child components.
-  
+
   // States
   const [isFocused, setIsFocused] = useState(false);
   // Functions

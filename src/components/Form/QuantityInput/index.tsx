@@ -4,7 +4,7 @@ import { QuantityInputContainer } from "./styles";
 export type Props = {
   quantity: number;
   incrementQuantity: () => void; // function that returns void
-  decrementQuantity: () => void;
+  decrementQuantity: () => void
 }
 
 export function QuantityInput({quantity, incrementQuantity, decrementQuantity} : Props){
